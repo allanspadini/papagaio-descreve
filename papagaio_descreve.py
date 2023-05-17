@@ -1,6 +1,9 @@
 import streamlit as st
 from transformers import pipeline
 from PIL import Image
+import warnings, logging
+warnings.simplefilter('ignore')
+logging.disable(logging.WARNING)
 
 def carrega_imagem(image_file):
 
