@@ -10,30 +10,30 @@ def carrega_imagem(image_file):
     img = Image.open(image_file)
     return img
 
-def main():
 
 
-    st.title('Papagaio descreve')
-    st.image('papagaio.jfif')
-    menu = ['Home','Sobre']
-    escolha = st.sidebar.selectbox('Menu',menu)
 
-    if escolha == 'Home':
+st.title('Papagaio descreve')
+st.image('papagaio.jfif')
+menu = ['Home','Sobre']
+escolha = st.sidebar.selectbox('Menu',menu)
+
+if escolha == 'Home':
         
 
-        image_file = st.file_uploader('Suba uma imagem',type=['PNG','JPG','JPEG'])
+    image_file = st.file_uploader('Suba uma imagem',type=['PNG','JPG','JPEG'])
         
-        if image_file is not None:
-            #st.markdown(caption(image_file))
-            st.image(image_file)
-            caption = pipeline('image-to-text',model='nlpconnect/vit-gpt2-image-captioning')
-            dicionario = caption(carrega_imagem(image_file))
-            st.markdown(' ## Descrição: \n')
-            st.markdown('## '+dicionario[0]['generated_text'])
+    if image_file is not None:
+            
+        st.image(image_file)
+        caption = pipeline('image-to-text',model='nlpconnect/vit-gpt2-image-captioning')
+        dicionario = caption(carrega_imagem(image_file))
+        st.markdown(' ## Descrição: \n')
+        st.markdown('## '+dicionario[0]['generated_text'])
 
-    else:
-        st.markdown('''
-        Esta aplicação gera a descrição de uma imagem. Este é um exemplo de um recurso que utiliza tecnologias avançadas de inteligência artificial para interpretar e descrever imagens, melhorando a acessibilidade e a experiência do usuário. Uma característica fundamental dessa acessibilidade é o uso de "alt-text" (texto alternativo).
+else:
+    st.markdown('''
+    Esta aplicação gera a descrição de uma imagem. Este é um exemplo de um recurso que utiliza tecnologias avançadas de inteligência artificial para interpretar e descrever imagens, melhorando a acessibilidade e a experiência do usuário. Uma característica fundamental dessa acessibilidade é o uso de "alt-text" (texto alternativo).
 
 O alt-text é uma breve descrição que pode ser atribuída a uma imagem em uma página da web. Este texto é lido pelos leitores de tela, softwares que são comumente utilizados por pessoas com deficiência visual para navegar na Internet. Quando esses leitores encontram uma imagem, eles leem o alt-text para fornecer uma descrição do conteúdo visual.
 
@@ -44,5 +44,3 @@ Além disso, o alt-text pode ser útil em situações em que a imagem não pode 
 Portanto, seja para melhorar a acessibilidade, otimizar a SEO ou aprimorar a experiência do usuário, o uso de alt-text em imagens é uma prática recomendada na criação de conteúdo para a web. A aplicação que gera descrições de imagens pode ser uma ferramenta valiosa para ajudar a criar alt-texts eficazes e precisos.''')
 
 
-if __name__ == '__main__':
-    main()
