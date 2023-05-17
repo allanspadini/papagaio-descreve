@@ -25,8 +25,8 @@ def main():
             st.image(image_file)
             caption = pipeline('image-to-text',model='nlpconnect/vit-gpt2-image-captioning')
             dicionario = caption(carrega_imagem(image_file))
-            st.markdown('Descrição: \n')
-            st.markdown('##'+dicionario[0]['generated_text'])
+            st.markdown(' ## Descrição: \n')
+            st.markdown('## '+dicionario[0]['generated_text'])
 
     else:
         st.markdown('''
