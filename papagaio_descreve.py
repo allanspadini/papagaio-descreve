@@ -12,7 +12,7 @@ def carrega_imagem(image_file):
 
 
 
-
+caption = pipeline('image-to-text',model='nlpconnect/vit-gpt2-image-captioning')
 st.title('Papagaio descreve')
 st.image('papagaio.jfif')
 menu = ['Home','Sobre']
@@ -26,7 +26,6 @@ if escolha == 'Home':
     if image_file is not None:
             
         st.image(image_file)
-        caption = pipeline('image-to-text',model='nlpconnect/vit-gpt2-image-captioning')
         dicionario = caption(carrega_imagem(image_file))
         st.markdown(' ## Descrição: \n')
         st.markdown('## '+dicionario[0]['generated_text'])
