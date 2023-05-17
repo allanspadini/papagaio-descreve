@@ -22,7 +22,7 @@ def main():
         
         if image_file is not None:
             #st.markdown(caption(image_file))
-            caption = pipeline('image-to-text')
+            caption = pipeline('image-to-text',model='nlpconnect/vit-gpt2-image-captioning')
             dicionario = caption(carrega_imagem(image_file))
             st.markdown('Description: \n')
             st.markdown(dicionario[0]['generated_text'])
