@@ -1,9 +1,7 @@
 import streamlit as st
 from transformers import pipeline
 from PIL import Image
-import warnings, logging
-warnings.simplefilter('ignore')
-logging.disable(logging.WARNING)
+
 
 def carrega_imagem(image_file):
 
@@ -11,8 +9,12 @@ def carrega_imagem(image_file):
     return img
 
 
+@st.cache_resource
+def funcao():
+    return pipeline('image-to-text',model='nlpconnect/vit-gpt2-image-captioning')
+caption = funcao()
 
-caption = pipeline('image-to-text',model='nlpconnect/vit-gpt2-image-captioning')
+
 st.title('Papagaio descreve')
 st.image('papagaio.jfif')
 menu = ['Home','Sobre']
