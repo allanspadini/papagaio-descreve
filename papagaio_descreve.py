@@ -1,7 +1,6 @@
 import streamlit as st
 from transformers import pipeline
 from PIL import Image
-import translators as ts
 
 def carrega_imagem(image_file):
 
@@ -27,8 +26,7 @@ def main():
             caption = pipeline('image-to-text',model='nlpconnect/vit-gpt2-image-captioning')
             dicionario = caption(carrega_imagem(image_file))
             st.markdown('Descrição: \n')
-            tradu = ts.translate_text(dicionario[0]['generated_text'], from_language='en', to_language='pt')
-            st.markdown(tradu)
+            st.markdown('##'+dicionario[0]['generated_text'])
 
     else:
         st.markdown('''
