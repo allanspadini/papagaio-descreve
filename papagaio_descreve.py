@@ -11,7 +11,7 @@ def carrega_imagem(image_file):
 
 @st.cache_resource
 def funcao():
-    return pipeline('image-to-text',model='Salesforce/blip-image-captioning-large')
+    return pipeline('image-to-text',model='nlpconnect/vit-gpt2-image-captioning')
 caption = funcao()
 
 
