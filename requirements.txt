@@ -1,3 +1,4 @@
 transformers
 pillow
 torch
+deep_translator

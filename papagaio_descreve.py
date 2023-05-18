@@ -1,7 +1,7 @@
 import streamlit as st
 from transformers import pipeline
 from PIL import Image
-
+from deep_translator import GoogleTranslator
 
 def carrega_imagem(image_file):
 
@@ -11,7 +11,7 @@ def carrega_imagem(image_file):
 
 @st.cache_resource
 def funcao():
-    return pipeline('image-to-text',model='nlpconnect/vit-gpt2-image-captioning')
+    return pipeline('image-to-text',model='Salesforce/blip-image-captioning-large')
 caption = funcao()
 
 
@@ -30,7 +30,8 @@ if escolha == 'Home':
         st.image(image_file)
         dicionario = caption(carrega_imagem(image_file))
         st.markdown(' ## Descrição: \n')
-        st.markdown('## '+dicionario[0]['generated_text'])
+        traducao = GoogleTranslator(source='auto', target='pt').translate(dicionario[0]['generated_text'])
+        st.markdown('## '+ traducao)
 
 else:
     st.markdown('''
